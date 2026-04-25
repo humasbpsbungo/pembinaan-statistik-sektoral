@@ -1,0 +1,304 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'Platform edukasi dan simulasi Indeks Pembangunan Statistik (IPS) untuk Evaluasi Penyelenggaraan Statistik Sektoral 2026' } = Astro.props;
+
+import '../styles/global.css';
+import AuthNav from '../components/AuthNav';
+---
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content={description} />
+  <meta name="theme-color" content="#0B0F19" />
+  
+  <!-- PWA -->
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="apple-touch-icon" href="/icons/icon-192.png" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  
+  <title>{title} | EPSS 2026</title>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="container header-nav">
+      <a href="/" class="logo">
+        <span class="logo-icon">📊</span>
+        <span class="logo-text">EPSS <span class="accent-text">2026</span></span>
+      </a>
+      
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle Menu">
+        <span></span><span></span><span></span>
+      </button>
+      
+      <ul class="nav-links" id="navLinks">
+        <li><a href="/">Beranda</a></li>
+        <li><a href="/indikator">Indikator</a></li>
+        <li><a href="/simulasi">Simulasi IPS</a></li>
+        <li><a href="/bukti-dukung">Bukti Dukung</a></li>
+        <AuthNav client:load />
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <slot />
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <div class="footer-brand">
+        <span class="logo-icon">📊</span>
+        <span class="logo-text">EPSS 2026</span>
+        <p class="footer-desc">Platform edukasi dan simulasi Indeks Pembangunan Statistik untuk Evaluasi Penyelenggaraan Statistik Sektoral.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Navigasi</h4>
+        <a href="/">Beranda</a>
+        <a href="/indikator">Eksplorasi Indikator</a>
+        <a href="/simulasi">Simulasi IPS</a>
+        <a href="/bukti-dukung">Bukti Dukung</a>
+        <a href="/settings">Pengaturan Profil</a>
+      </div>
+      <div class="footer-links">
+        <h4>Referensi</h4>
+        <a href="https://romantik.bps.go.id" target="_blank" rel="noopener">Romantik Online</a>
+        <a href="https://data.go.id" target="_blank" rel="noopener">Portal SDI</a>
+        <a href="https://www.bps.go.id" target="_blank" rel="noopener">BPS</a>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 EPSS Learning Platform · Badan Pusat Statistik</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const mobileBtn = document.getElementById('mobileMenuBtn');
+    const navLinks = document.getElementById('navLinks');
+    mobileBtn?.addEventListener('click', () => {
+      navLinks?.classList.toggle('open');
+      mobileBtn.classList.toggle('open');
+    });
+
+    // PWA Service Worker
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js').catch(() => {});
+      });
+    }
+
+    // Active nav link
+    const currentPath = window.location.pathname;
+    document.querySelectorAll('.nav-links a:not(.btn)').forEach(link => {
+      const href = link.getAttribute('href');
+      if (href === currentPath || (href !== '/' && currentPath.startsWith(href || ''))) {
+        link.classList.add('active');
+      }
+    });
+  </script>
+
+  <style>
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(11, 15, 25, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-color);
+      height: var(--header-height);
+    }
+
+    .header-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: var(--header-height);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      text-decoration: none;
+      color: var(--text-primary);
+    }
+
+    .logo-icon { font-size: 1.5rem; }
+    .logo-text {
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 1.2rem;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xl);
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color var(--transition-fast);
+      position: relative;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--text-primary);
+    }
+
+    .nav-links a.active::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--accent);
+      border-radius: 1px;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .mobile-menu-btn span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--text-primary);
+      transition: all var(--transition-fast);
+      border-radius: 2px;
+    }
+
+    .mobile-menu-btn.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .mobile-menu-btn.open span:nth-child(2) { opacity: 0; }
+    .mobile-menu-btn.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    /* Footer */
+    .site-footer {
+      background: var(--bg-dark);
+      border-top: 1px solid var(--border-color);
+      padding: var(--space-3xl) 0 var(--space-lg);
+      margin-top: var(--space-3xl);
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: var(--space-2xl);
+    }
+
+    .footer-brand .logo-text {
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 1.1rem;
+    }
+
+    .footer-desc {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      margin-top: var(--space-sm);
+      max-width: 320px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    .footer-links h4 {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: var(--space-xs);
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+    .footer-links a:hover { color: var(--accent); }
+
+    .footer-bottom {
+      grid-column: 1 / -1;
+      border-top: 1px solid var(--border-color);
+      padding-top: var(--space-lg);
+      margin-top: var(--space-lg);
+    }
+
+    .footer-bottom p {
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      text-align: center;
+    }
+
+    @media (max-width: 768px) {
+      .mobile-menu-btn { display: flex; }
+      
+      .nav-links {
+        display: none;
+        position: fixed;
+        top: var(--header-height);
+        left: 0;
+        right: 0;
+        background: var(--bg-dark);
+        flex-direction: column;
+        padding: var(--space-lg);
+        gap: var(--space-md);
+        border-bottom: 1px solid var(--border-color);
+        z-index: 99;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+      }
+
+      .nav-links.open { display: flex; }
+      .nav-links a.active::after { display: none; }
+      .nav-links a { font-size: 1rem; padding: 8px 0; }
+      .nav-links li:last-child { margin-top: var(--space-sm); }
+      .nav-links .btn { width: 100%; justify-content: center; }
+
+      .site-footer { padding: var(--space-2xl) 0 var(--space-lg); }
+
+      .footer-content {
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-xl);
+      }
+
+      .footer-brand {
+        grid-column: 1 / -1;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .footer-content {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+      }
+      .footer-desc { max-width: 100%; }
+    }
+  </style>
+</body>
+</html>

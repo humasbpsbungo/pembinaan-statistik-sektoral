@@ -1,0 +1,450 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { domains } from '../data/indicators';
+
+const stats = [
+  { value: '644', label: 'Target Lokus', icon: '🏛️' },
+  { value: '38', label: 'Indikator', icon: '📋' },
+  { value: '5', label: 'Domain', icon: '🎯' },
+  { value: '2,83', label: 'Target IPS', icon: '📈' },
+];
+
+const predikatList = [
+  { range: '4,2 – 5,0', label: 'Memuaskan', level: 5, icon: '🥇' },
+  { range: '3,5 – <4,2', label: 'Sangat Baik', level: 4, icon: '🥈' },
+  { range: '2,6 – <3,5', label: 'Baik', level: 3, icon: '🥉' },
+  { range: '1,8 – <2,6', label: 'Cukup', level: 2, icon: '⚠️' },
+  { range: '< 1,8', label: 'Kurang', level: 1, icon: '🔴' },
+];
+---
+
+<Layout title="Beranda">
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="container hero-content">
+      <div class="hero-badge animate-fadeInUp">
+        <span>📊</span> Evaluasi Penyelenggaraan Statistik Sektoral 2026
+      </div>
+      <h1 class="hero-title animate-fadeInUp stagger-1">
+        Pahami EPSS,<br/>
+        <span class="accent-text">Simulasikan IPS Anda</span>
+      </h1>
+      <p class="hero-desc animate-fadeInUp stagger-2">
+        Platform edukasi interaktif untuk memahami EPSS 2026, mengeksplorasi 38 indikator penilaian, 
+        dan mensimulasikan nilai Indeks Pembangunan Statistik (IPS) instansi Anda.
+      </p>
+      <div class="hero-actions animate-fadeInUp stagger-3">
+        <a href="/simulasi" class="btn btn-primary btn-lg">🧮 Simulasi IPS</a>
+        <a href="/indikator" class="btn btn-secondary btn-lg">📖 Eksplorasi Indikator</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="section">
+    <div class="container">
+      <div class="stats-grid">
+        {stats.map((stat, i) => (
+          <div class={`stat-card glass-card animate-fadeInUp stagger-${i + 1}`}>
+            <span class="stat-icon">{stat.icon}</span>
+            <span class="stat-value">{stat.value}</span>
+            <span class="stat-label">{stat.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- What is EPSS -->
+  <section class="section" id="tentang">
+    <div class="container">
+      <div class="section-header animate-fadeInUp">
+        <h2>Apa itu <span class="accent-text">EPSS</span>?</h2>
+        <p class="section-desc">Evaluasi Penyelenggaraan Statistik Sektoral</p>
+      </div>
+      <div class="epss-card glass-card animate-fadeInUp stagger-1">
+        <p>
+          <strong>EPSS</strong> <em>(Evaluasi Penyelenggaraan Statistik Sektoral)</em> adalah proses penilaian 
+          secara sistematis melalui verifikasi & validasi informasi terhadap hasil penilaian mandiri untuk 
+          mengukur tingkat kematangan <strong>penyelenggaraan statistik sektoral</strong> di instansi pemerintah 
+          (Instansi Pusat dan Pemerintah Daerah) dengan menghasilkan nilai 
+          <strong>Indeks Pembangunan Statistik (IPS)</strong>.
+        </p>
+        <p class="legal-basis">
+          📜 Dasar hukum: <em>Peraturan Badan Pusat Statistik Nomor 3 Tahun 2022 tentang EPSS</em>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 Domains -->
+  <section class="section" id="domain">
+    <div class="container">
+      <div class="section-header animate-fadeInUp">
+        <h2>5 Domain Penilaian</h2>
+        <p class="section-desc">Struktur penilaian EPSS terdiri dari 5 Domain, 19 Aspek, dan 38 Indikator</p>
+      </div>
+      <div class="domains-grid">
+        {domains.map((domain, i) => (
+          <a href={`/indikator/${domain.id}`} class={`domain-card glass-card animate-fadeInUp stagger-${i + 1}`}>
+            <div class="domain-header">
+              <span class="domain-icon">{domain.icon}</span>
+              <span class="domain-weight">{domain.bobotDomain}%</span>
+            </div>
+            <h3 class="domain-title">{domain.namaShort}</h3>
+            <p class="domain-desc">{domain.deskripsi}</p>
+            <div class="domain-meta">
+              <span>{domain.aspeks.length} Aspek</span>
+              <span>·</span>
+              <span>{domain.aspeks.reduce((acc, a) => acc + a.indikators.length, 0)} Indikator</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- IPS Scale -->
+  <section class="section" id="predikat">
+    <div class="container">
+      <div class="section-header animate-fadeInUp">
+        <h2>Skala Predikat <span class="accent-text">IPS</span></h2>
+        <p class="section-desc">Indeks Pembangunan Statistik dinilai pada skala 1,00 – 5,00</p>
+      </div>
+      <div class="predikat-grid">
+        {predikatList.map((p, i) => (
+          <div class={`predikat-card glass-card animate-fadeInUp stagger-${i + 1}`}>
+            <div class="predikat-header">
+              <span class="predikat-icon">{p.icon}</span>
+              <span class={`badge badge-level-${p.level}`}>Level {p.level}</span>
+            </div>
+            <h3 class="predikat-label">{p.label}</h3>
+            <span class="predikat-range">{p.range}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section cta-section">
+    <div class="container">
+      <div class="cta-card glass-card animate-fadeInUp">
+        <h2>Siap Mensimulasikan IPS Instansi Anda?</h2>
+        <p>Gunakan simulator interaktif kami untuk memperkirakan nilai IPS dan mengidentifikasi area yang perlu ditingkatkan.</p>
+        <div class="cta-actions">
+          <a href="/simulasi" class="btn btn-primary btn-lg">🧮 Mulai Simulasi</a>
+          <a href="/register" class="btn btn-secondary btn-lg">📝 Daftar Akun</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* Hero */
+  .hero {
+    position: relative;
+    padding: calc(var(--header-height) + var(--space-3xl)) 0 var(--space-3xl);
+    overflow: hidden;
+    min-height: 85vh;
+    display: flex;
+    align-items: center;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: var(--gradient-hero);
+  }
+
+  .hero-bg::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -30%;
+    width: 80%;
+    height: 80%;
+    background: radial-gradient(circle, rgba(212, 168, 67, 0.06) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .hero-bg::after {
+    content: '';
+    position: absolute;
+    bottom: -40%;
+    left: -20%;
+    width: 60%;
+    height: 60%;
+    background: radial-gradient(circle, rgba(42, 90, 140, 0.08) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: 8px 20px;
+    background: var(--accent-soft);
+    border: 1px solid var(--border-accent);
+    border-radius: var(--radius-full);
+    font-size: 0.85rem;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: var(--space-xl);
+  }
+
+  .hero-title {
+    margin-bottom: var(--space-lg);
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    line-height: 1.15;
+  }
+
+  .hero-desc {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: var(--space-xl);
+    max-width: 640px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: var(--space-md);
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* Stats */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-lg);
+    margin-top: calc(-1 * var(--space-3xl));
+    position: relative;
+    z-index: 2;
+  }
+
+  .stat-card {
+    padding: var(--space-xl);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+
+  .stat-icon { font-size: 2rem; }
+  .stat-value {
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--accent);
+  }
+  .stat-label {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+
+  /* Section headers */
+  .section-header {
+    text-align: center;
+    margin-bottom: var(--space-2xl);
+  }
+
+  .section-desc {
+    color: var(--text-secondary);
+    margin-top: var(--space-sm);
+    font-size: 1rem;
+  }
+
+  /* EPSS Card */
+  .epss-card {
+    padding: var(--space-xl) var(--space-2xl);
+    font-size: 1.05rem;
+    line-height: 1.8;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .epss-card strong { color: var(--accent); }
+
+  .legal-basis {
+    margin-top: var(--space-md);
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+  }
+
+  /* Domains Grid */
+  .domains-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-lg);
+  }
+
+  .domain-card {
+    padding: var(--space-xl);
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .domain-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .domain-icon { font-size: 2.4rem; }
+
+  .domain-weight {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 1.5rem;
+    color: var(--accent);
+  }
+
+  .domain-title {
+    font-size: 1.15rem;
+  }
+
+  .domain-desc {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    line-height: 1.6;
+    flex-grow: 1;
+  }
+
+  .domain-meta {
+    display: flex;
+    gap: var(--space-sm);
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+
+  /* Predikat */
+  .predikat-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: var(--space-md);
+  }
+
+  .predikat-card {
+    padding: var(--space-lg);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+
+  .predikat-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+
+  .predikat-icon { font-size: 1.5rem; }
+
+  .predikat-label {
+    font-size: 1.05rem;
+    margin-top: var(--space-xs);
+  }
+
+  .predikat-range {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    font-family: var(--font-mono);
+  }
+
+  /* CTA */
+  .cta-section {
+    padding-bottom: 0;
+  }
+
+  .cta-card {
+    padding: var(--space-3xl);
+    text-align: center;
+    background: var(--gradient-primary);
+    border-color: var(--border-accent);
+  }
+
+  .cta-card h2 { margin-bottom: var(--space-md); }
+
+  .cta-card p {
+    color: var(--text-secondary);
+    max-width: 520px;
+    margin: 0 auto var(--space-xl);
+    font-size: 1rem;
+  }
+
+  .cta-actions {
+    display: flex;
+    gap: var(--space-md);
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .predikat-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      min-height: auto;
+      padding: calc(var(--header-height) + var(--space-2xl)) 0 var(--space-2xl);
+    }
+    .hero-badge { font-size: 0.78rem; padding: 6px 14px; }
+    .hero-title { font-size: clamp(1.8rem, 7vw, 2.5rem); }
+    .hero-desc { font-size: 0.95rem; }
+    .hero-actions {
+      flex-direction: column;
+      align-items: stretch;
+      gap: var(--space-sm);
+    }
+    .hero-actions .btn { width: 100%; justify-content: center; }
+
+    .stats-grid {
+      grid-template-columns: repeat(2, 1fr);
+      margin-top: var(--space-xl);
+      gap: var(--space-sm);
+    }
+    .stat-card { padding: var(--space-lg) var(--space-md); }
+    .stat-value { font-size: 1.8rem; }
+    .stat-icon { font-size: 1.5rem; }
+
+    .epss-card { padding: var(--space-lg); font-size: 0.95rem; }
+
+    .domains-grid { grid-template-columns: 1fr; }
+
+    .predikat-grid { grid-template-columns: repeat(2, 1fr); gap: var(--space-sm); }
+    .predikat-card { padding: var(--space-md); }
+    .predikat-label { font-size: 0.9rem; }
+
+    .cta-card { padding: var(--space-xl) var(--space-lg); }
+    .cta-actions { flex-direction: column; align-items: stretch; }
+    .cta-actions .btn { width: 100%; justify-content: center; }
+  }
+
+  @media (max-width: 480px) {
+    .stats-grid { grid-template-columns: repeat(2, 1fr); gap: var(--space-xs); }
+    .predikat-grid { grid-template-columns: 1fr 1fr; }
+    .predikat-range { font-size: 0.75rem; }
+  }
+</style>

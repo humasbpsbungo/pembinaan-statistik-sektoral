@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Offline — EPSS 2026</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700&family=Inter:wght@400&display=swap");
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: "Inter", sans-serif;
+        background: #0b0f19;
+        color: #e6edf3;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        text-align: center;
+        padding: 24px;
+      }
+      .container {
+        max-width: 460px;
+      }
+      .icon {
+        font-size: 4rem;
+        margin-bottom: 24px;
+      }
+      h1 {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-size: 1.8rem;
+        margin-bottom: 12px;
+      }
+      p {
+        color: #8b949e;
+        line-height: 1.6;
+        margin-bottom: 24px;
+      }
+      .btn {
+        display: inline-block;
+        padding: 12px 24px;
+        background: linear-gradient(135deg, #d4a843, #f0c95e);
+        color: #0b0f19;
+        border: none;
+        border-radius: 12px;
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-weight: 600;
+        font-size: 1rem;
+        cursor: pointer;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="icon">📡</div>
+      <h1>Anda Sedang Offline</h1>
+      <p>
+        Aplikasi EPSS 2026 membutuhkan koneksi internet untuk beberapa fitur.
+        Halaman yang pernah Anda kunjungi sebelumnya masih dapat diakses secara
+        offline.
+      </p>
+      <button class="btn" onclick="window.location.reload()">Coba Lagi</button>
+    </div>
+  </body>
+</html>

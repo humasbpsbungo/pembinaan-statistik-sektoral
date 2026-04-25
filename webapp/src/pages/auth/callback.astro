@@ -1,0 +1,75 @@
+---
+// This page handles OAuth callback from Google.
+// Supabase sets the session from URL hash, then we redirect appropriately.
+---
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>Memverifikasi... | EPSS 2026</title>
+  <style>
+    body {
+      background: #0B0F19;
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .spinner {
+      text-align: center;
+    }
+    .spinner-icon {
+      font-size: 3rem;
+      animation: spin 1s linear infinite;
+      display: block;
+      margin-bottom: 16px;
+    }
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    p { color: #8B949E; font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+  <div class="spinner">
+    <span class="spinner-icon">⚙️</span>
+    <p>Memverifikasi akun Anda...</p>
+  </div>
+
+  <script>
+    import { supabase } from '../../lib/supabase';
+
+    async function handleCallback() {
+      // Wait for Supabase to process the OAuth hash/code from URL
+      const { data: { user }, error } = await supabase.auth.getUser();
+
+      if (error || !user) {
+        // Auth failed, go back to login
+        window.location.href = '/login';
+        return;
+      }
+
+      // Check if the user's profile is complete
+      const { data: profile } = await supabase
+        .from('profiles')
+        .select('nama_instansi, jenis_instansi')
+        .eq('id', user.id)
+        .single();
+
+      // If profile is incomplete (no nama_instansi), redirect to settings
+      if (!profile?.nama_instansi || !profile?.jenis_instansi) {
+        window.location.href = '/settings';
+      } else {
+        window.location.href = '/bukti-dukung';
+      }
+    }
+
+    handleCallback();
+  </script>
+</body>
+</html>

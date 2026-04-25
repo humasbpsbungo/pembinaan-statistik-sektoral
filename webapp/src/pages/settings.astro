@@ -1,0 +1,279 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Pengaturan Profil">
+  <section class="section settings-section">
+    <div class="container-narrow">
+      <div class="settings-header animate-fadeInUp">
+        <span class="settings-icon">⚙️</span>
+        <h1>Lengkapi <span class="accent-text">Profil Instansi</span></h1>
+        <p>Informasi ini digunakan untuk mengidentifikasi instansi Anda dalam sistem EPSS 2026.</p>
+      </div>
+
+      <div class="settings-card glass-card animate-fadeInUp" style="animation-delay: 0.1s">
+        <div id="alertBanner" class="alert-banner" style="display:none"></div>
+
+        <form id="settingsForm" class="settings-form">
+          <!-- Email (readonly) -->
+          <div class="form-group">
+            <label class="form-label" for="email">
+              Email Akun
+              <span class="form-badge">Tidak dapat diubah</span>
+            </label>
+            <input type="email" id="email" class="form-input" readonly disabled />
+          </div>
+
+          <div class="form-divider"></div>
+
+          <!-- Nama Instansi -->
+          <div class="form-group">
+            <label class="form-label required" for="namaInstansi">Nama Instansi</label>
+            <input
+              type="text"
+              id="namaInstansi"
+              class="form-input"
+              placeholder="Contoh: Pemerintah Kabupaten Bungo/ Kementerian Keuangan"
+              required
+            />
+          </div>
+
+          <!-- Jenis Instansi -->
+          <div class="form-group">
+            <label class="form-label required" for="jenisInstansi">Jenis Instansi</label>
+            <select id="jenisInstansi" class="form-select form-input" required>
+              <option value="">-- Pilih Jenis Instansi --</option>
+              <option value="kementerian_lembaga">Kementerian / Lembaga</option>
+              <option value="provinsi">Pemerintah Provinsi</option>
+              <option value="kabupaten">Pemerintah Kabupaten</option>
+              <option value="kota">Pemerintah Kota</option>
+            </select>
+          </div>
+
+          <div class="form-divider"></div>
+
+          <!-- Nama Kontak -->
+          <div class="form-group">
+            <label class="form-label" for="namaKontak">
+              Nama Kontak PIC
+              <span class="form-hint">Person in Charge yang bertanggung jawab</span>
+            </label>
+            <input
+              type="text"
+              id="namaKontak"
+              class="form-input"
+              placeholder="Contoh: Ahmad Fauzi"
+            />
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary btn-lg" id="submitBtn">
+              <span id="submitText">Simpan Profil</span>
+            </button>
+            <a href="/bukti-dukung" id="skipLink" class="btn btn-secondary btn-lg">
+              Lewati untuk sekarang
+            </a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  import { supabase } from '../lib/supabase';
+
+  const emailInput = document.getElementById('email') as HTMLInputElement;
+  const alertBanner = document.getElementById('alertBanner') as HTMLDivElement;
+  const submitBtn = document.getElementById('submitBtn') as HTMLButtonElement;
+  const submitText = document.getElementById('submitText') as HTMLSpanElement;
+  const skipLink = document.getElementById('skipLink') as HTMLAnchorElement;
+
+  // Load existing profile
+  async function loadProfile() {
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) {
+      window.location.href = '/login';
+      return;
+    }
+
+    emailInput.value = user.email || '';
+
+    const { data: profile } = await supabase
+      .from('profiles')
+      .select('nama_instansi, jenis_instansi, nama_kontak')
+      .eq('id', user.id)
+      .single();
+
+    if (profile) {
+      (document.getElementById('namaInstansi') as HTMLInputElement).value = profile.nama_instansi || '';
+      (document.getElementById('namaKontak') as HTMLInputElement).value = profile.nama_kontak || '';
+
+      if (profile.jenis_instansi) {
+        (document.getElementById('jenisInstansi') as HTMLSelectElement).value = profile.jenis_instansi;
+      }
+
+      // If profile is complete, show skip as "Kembali ke Dashboard"
+      if (profile.nama_instansi) {
+        skipLink.textContent = 'Kembali ke Dashboard';
+      }
+    }
+  }
+
+  function showAlert(msg: string, type: 'success' | 'error') {
+    alertBanner.textContent = msg;
+    alertBanner.className = `alert-banner alert-${type}`;
+    alertBanner.style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // Save
+  document.getElementById('settingsForm')?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) return;
+
+    submitBtn.disabled = true;
+    submitText.textContent = 'Menyimpan...';
+
+    const namaInstansi = (document.getElementById('namaInstansi') as HTMLInputElement).value.trim();
+    const jenisInstansi = (document.getElementById('jenisInstansi') as HTMLSelectElement).value || null;
+    const namaKontak = (document.getElementById('namaKontak') as HTMLInputElement).value.trim() || null;
+
+    const { error } = await supabase
+      .from('profiles')
+      .update({
+        nama_instansi: namaInstansi,
+        jenis_instansi: jenisInstansi,
+        nama_kontak: namaKontak,
+        email: user.email,
+        updated_at: new Date().toISOString()
+      })
+      .eq('id', user.id);
+
+    submitBtn.disabled = false;
+    submitText.textContent = 'Simpan Profil';
+
+    if (error) {
+      showAlert('Gagal menyimpan: ' + error.message, 'error');
+    } else {
+      showAlert('✓ Profil berhasil disimpan! Mengarahkan ke dashboard...', 'success');
+      setTimeout(() => {
+        window.location.href = '/bukti-dukung';
+      }, 1500);
+    }
+  });
+
+  loadProfile();
+</script>
+
+<style>
+  .settings-section {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    min-height: calc(100vh - var(--header-height));
+    padding: var(--space-3xl) 0;
+  }
+
+  .container-narrow {
+    width: 100%;
+    max-width: 580px;
+    padding: 0 var(--space-lg);
+  }
+
+  .settings-header {
+    text-align: center;
+    margin-bottom: var(--space-xl);
+  }
+
+  .settings-icon {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: var(--space-md);
+  }
+
+  .settings-header h1 { font-size: 1.7rem; margin-bottom: var(--space-sm); }
+
+  .settings-header p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+  }
+
+  .settings-card {
+    padding: var(--space-2xl);
+  }
+
+  .settings-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+  }
+
+  .form-divider {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: var(--space-xs) 0;
+  }
+
+  .form-badge {
+    margin-left: var(--space-sm);
+    background: var(--bg-dark);
+    color: var(--text-muted);
+    padding: 2px 8px;
+    border-radius: var(--radius-full);
+    font-size: 0.7rem;
+    font-weight: 500;
+  }
+
+  .form-hint {
+    display: block;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    font-weight: 400;
+    margin-top: 2px;
+  }
+
+  .form-label.required::after {
+    content: ' *';
+    color: var(--level-1);
+  }
+
+  .form-actions {
+    display: flex;
+    gap: var(--space-md);
+    margin-top: var(--space-sm);
+  }
+
+  .form-actions .btn { flex: 1; justify-content: center; }
+
+  .alert-banner {
+    padding: var(--space-md) var(--space-lg);
+    border-radius: var(--radius-md);
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: var(--space-lg);
+  }
+
+  .alert-success {
+    background: rgba(63, 185, 80, 0.1);
+    border: 1px solid rgba(63, 185, 80, 0.3);
+    color: var(--level-5);
+  }
+
+  .alert-error {
+    background: rgba(248, 81, 73, 0.1);
+    border: 1px solid rgba(248, 81, 73, 0.3);
+    color: var(--level-1);
+  }
+
+  input[readonly] {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  @media (max-width: 600px) {
+    .form-actions { flex-direction: column; }
+  }
+</style>

@@ -1,0 +1,383 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { domains } from '../../data/indicators';
+
+export function getStaticPaths() {
+  return domains.map(d => ({ params: { domain: String(d.id) } }));
+}
+
+const { domain: domainId } = Astro.params;
+const domain = domains.find(d => String(d.id) === domainId);
+
+if (!domain) return Astro.redirect('/indikator');
+
+const totalIndicators = domain.aspeks.reduce((a, asp) => a + asp.indikators.length, 0);
+---
+
+<Layout title={`Domain ${domain.id}: ${domain.namaShort}`}>
+  <section class="section page-top">
+    <div class="container">
+      <div class="breadcrumb animate-fadeInUp">
+        <a href="/">Beranda</a> <span>/</span>
+        <a href="/indikator">Indikator</a> <span>/</span>
+        <span>Domain {domain.id}</span>
+      </div>
+
+      <div class="domain-hero animate-fadeInUp stagger-1">
+        <div class="domain-hero-left">
+          <span class="domain-icon-lg">{domain.icon}</span>
+          <div>
+            <span class="domain-label">Domain {domain.id}</span>
+            <h1>{domain.nama}</h1>
+            <p class="domain-hero-desc">{domain.deskripsi}</p>
+          </div>
+        </div>
+        <div class="domain-hero-stats">
+          <div class="dh-stat">
+            <span class="dh-val">{domain.bobotDomain}%</span>
+            <span class="dh-lbl">Bobot IPS</span>
+          </div>
+          <div class="dh-stat">
+            <span class="dh-val">{domain.aspeks.length}</span>
+            <span class="dh-lbl">Aspek</span>
+          </div>
+          <div class="dh-stat">
+            <span class="dh-val">{totalIndicators}</span>
+            <span class="dh-lbl">Indikator</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Aspek & Indikator -->
+      {domain.aspeks.map((aspek, ai) => (
+        <div class={`aspek-section animate-fadeInUp stagger-${ai + 1}`}>
+          <div class="aspek-header">
+            <h2>Aspek: {aspek.nama}</h2>
+            <span class="aspek-weight">Bobot Aspek: {aspek.bobotAspek}%</span>
+          </div>
+
+          {aspek.indikators.map((ind) => (
+            <details class="indikator-accordion glass-card">
+              <summary class="indikator-summary">
+                <div class="ind-left">
+                  <span class="ind-kode">{ind.kode}</span>
+                  <span class="ind-nama">{ind.nama}</span>
+                </div>
+                <div class="ind-right">
+                  {ind.isGeneral && <span class="badge badge-level-4" style="font-size:0.65rem">Umum</span>}
+                  <span class="ind-bobot">{ind.bobotRelatif.toFixed(2)}%</span>
+                  <svg class="chevron" width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/>
+                  </svg>
+                </div>
+              </summary>
+              <div class="indikator-detail">
+                <div class="ind-desc">
+                  <h4>Deskripsi</h4>
+                  <p>{ind.deskripsi}</p>
+                </div>
+
+                <div class="levels-table">
+                  <h4>Tingkat Kematangan</h4>
+                  <div class="table-wrapper">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th style="width:60px">Level</th>
+                          <th style="width:140px">Nama</th>
+                          <th>Kriteria Pemenuhan</th>
+                          <th>Contoh Bukti Dukung</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {ind.levels.map((lvl) => (
+                          <tr>
+                            <td>
+                              <span class={`badge badge-level-${lvl.level}`}>{lvl.level}</span>
+                            </td>
+                            <td style={`color: ${lvl.warna}; font-weight: 600`}>{lvl.nama}</td>
+                            <td>{lvl.kriteria}</td>
+                            <td>
+                              <ul class="bukti-list">
+                                {lvl.buktiDukung.map(b => <li>{b}</li>)}
+                              </ul>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </details>
+          ))}
+        </div>
+      ))}
+
+      <!-- Navigation -->
+      <div class="domain-nav animate-fadeInUp">
+        {domain.id > 1 && (
+          <a href={`/indikator/${domain.id - 1}`} class="btn btn-secondary">
+            ← Domain {domain.id - 1}
+          </a>
+        )}
+        <a href="/indikator" class="btn btn-ghost">Semua Domain</a>
+        {domain.id < 5 && (
+          <a href={`/indikator/${domain.id + 1}`} class="btn btn-secondary">
+            Domain {domain.id + 1} →
+          </a>
+        )}
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-top { padding-top: var(--space-2xl); }
+
+  .breadcrumb {
+    display: flex;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-lg);
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+  .breadcrumb a { color: var(--text-secondary); }
+
+  .domain-hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--space-2xl);
+    margin-bottom: var(--space-3xl);
+    padding: var(--space-2xl);
+    background: var(--gradient-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+  }
+
+  .domain-hero-left {
+    display: flex;
+    gap: var(--space-lg);
+    align-items: flex-start;
+  }
+
+  .domain-icon-lg { font-size: 3rem; }
+
+  .domain-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+  }
+
+  .domain-hero-desc {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin-top: var(--space-sm);
+    max-width: 540px;
+  }
+
+  .domain-hero-stats {
+    display: flex;
+    gap: var(--space-xl);
+    flex-shrink: 0;
+  }
+
+  .dh-stat { text-align: center; }
+
+  .dh-val {
+    display: block;
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 1.6rem;
+    color: var(--accent);
+  }
+
+  .dh-lbl {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* Aspek */
+  .aspek-section { margin-bottom: var(--space-2xl); }
+
+  .aspek-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--space-md);
+    padding-bottom: var(--space-sm);
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .aspek-header h2 { font-size: 1.1rem; }
+
+  .aspek-weight {
+    color: var(--accent);
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+
+  /* Indikator Accordion */
+  .indikator-accordion {
+    margin-bottom: var(--space-sm);
+    overflow: hidden;
+  }
+
+  .indikator-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-md) var(--space-lg);
+    cursor: pointer;
+    list-style: none;
+    gap: var(--space-md);
+  }
+
+  .indikator-summary::-webkit-details-marker { display: none; }
+
+  .ind-left {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    flex: 1;
+  }
+
+  .ind-kode {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--accent);
+    background: var(--accent-soft);
+    padding: 4px 10px;
+    border-radius: var(--radius-sm);
+    flex-shrink: 0;
+  }
+
+  .ind-nama {
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+
+  .ind-right {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    flex-shrink: 0;
+  }
+
+  .ind-bobot {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+  }
+
+  .chevron {
+    color: var(--text-muted);
+    transition: transform var(--transition-normal);
+    flex-shrink: 0;
+  }
+
+  details[open] .chevron { transform: rotate(180deg); }
+
+  .indikator-detail {
+    padding: var(--space-lg);
+    background: var(--bg-dark);
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+  }
+
+  .ind-desc h4,
+  .levels-table h4 {
+    font-size: 0.9rem;
+    color: var(--accent);
+    margin-bottom: var(--space-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .ind-desc p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+
+  .bukti-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .bukti-list li {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    padding-left: 14px;
+    position: relative;
+  }
+
+  .bukti-list li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+  }
+
+  /* Domain Nav */
+  .domain-nav {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-md);
+    margin-top: var(--space-2xl);
+  }
+
+  @media (max-width: 768px) {
+    .domain-hero {
+      flex-direction: column;
+      padding: var(--space-lg);
+      gap: var(--space-lg);
+      margin-bottom: var(--space-2xl);
+    }
+    .domain-hero-left { flex-direction: row; align-items: center; gap: var(--space-md); }
+    .domain-icon-lg { font-size: 2rem; }
+    .domain-hero-desc { font-size: 0.85rem; }
+    .domain-hero-stats {
+      width: 100%;
+      justify-content: space-around;
+      padding-top: var(--space-md);
+      border-top: 1px solid var(--border-color);
+    }
+    .dh-val { font-size: 1.3rem; }
+
+    .aspek-header { flex-direction: column; align-items: flex-start; gap: var(--space-xs); }
+    .aspek-header h2 { font-size: 0.95rem; }
+
+    .indikator-summary {
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+    .ind-left { width: 100%; gap: var(--space-sm); }
+    .ind-kode { font-size: 0.75rem; padding: 3px 8px; }
+    .ind-nama { font-size: 0.85rem; }
+    .ind-right { margin-left: auto; }
+    .ind-bobot { font-size: 0.78rem; }
+
+    .table-wrapper { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .table-wrapper table { min-width: 580px; }
+
+    .domain-nav { flex-wrap: wrap; gap: var(--space-sm); }
+    .domain-nav .btn { flex: 1; min-width: 120px; text-align: center; justify-content: center; }
+  }
+
+  @media (max-width: 480px) {
+    .domain-hero { padding: var(--space-md); }
+    .domain-icon-lg { font-size: 1.6rem; }
+    .indikator-summary { padding: var(--space-sm) var(--space-md); }
+  }
+</style>

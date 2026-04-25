@@ -1,0 +1,41 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { domains } from '../../data/indicators';
+import IndicatorsMatrix from '../../components/IndicatorsMatrix';
+---
+
+<Layout title="Eksplorasi Indikator">
+  <section class="section page-top">
+    <div class="container-fluid px-4">
+      <div class="breadcrumb animate-fadeInUp">
+        <a href="/">Beranda</a> <span>/</span> <span>Struktur Indikator</span>
+      </div>
+
+      <div class="section-header animate-fadeInUp stagger-1">
+        <h1>Struktur <span class="accent-text">Indikator EPSS</span></h1>
+        <p class="section-desc">
+          Tampilan matriks hierarki EPSS 2026. Klik pada setiap kotak Indikator untuk melihat informasi detailnya.
+        </p>
+      </div>
+
+      <div class="animate-fadeInUp stagger-2">
+        <IndicatorsMatrix client:load domains={domains} />
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-top { padding-top: var(--space-xl); }
+  .px-4 { padding-left: 1rem; padding-right: 1rem; max-width: 1500px; margin: 0 auto; }
+  
+  .breadcrumb {
+    display: flex; gap: var(--space-sm); margin-bottom: var(--space-md);
+    font-size: 0.85rem; color: var(--text-muted);
+  }
+  .breadcrumb a { color: var(--text-secondary); }
+  
+  .section-header { margin-bottom: var(--space-xl); }
+  .section-header h1 { font-size: 2rem; margin-bottom: 0.5rem; }
+  .section-desc { color: var(--text-secondary); font-size: 1rem; max-width: 800px; }
+</style>
