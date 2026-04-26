@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Portal Pembinaan Statistik Sektoral</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#14509b",
+                        secondary: "#1f8a84",
+                        "background-light": "#f8f9fa",
+                        "background-dark": "#121212",
+                        "card-light": "#ffffff",
+                        "card-dark": "#1e1e1e",
+                        "text-light": "#333333",
+                        "text-dark": "#e0e0e0",
+                        "text-muted-light": "#666666",
+                        "text-muted-dark": "#a0a0a0",
+                    },
+                    fontFamily: {
+                        display: ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.5rem",
+                    },
+                },
+            },
+        };
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #e3f2fd 0%, #fce4ec 100%);
+        }
+        .dark .hero-gradient {
+            background: linear-gradient(135deg, #1a237e 0%, #4a148c 100%);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark min-h-screen flex flex-col transition-colors duration-300">
+<header class="bg-white dark:bg-card-dark shadow-sm py-4 px-6 sticky top-0 z-50 transition-colors duration-300">
+<div class="max-w-7xl mx-auto flex justify-between items-center">
+<div class="flex items-center space-x-4">
+<img alt="Statistik Sektoral Logo" class="h-10 w-10 rounded" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBurFROuAAM8dtp8YTi7Y4_E_irI_WBgHtzksn9f_jS8GmVaqXFMkMrGwsq0pkRnzwdxbnzCp7jeq_rd8znYd_Q50d4bVRYR_THlnF0qWMmdJxPDvjTO7xS6mBeNSHrQnDHdwydaryiBn1-2DuIvHutzVFhAQk3tG3RBSPcKeAaJLdlFJDCDW-LGlBlcxB3HLu7DysbZT-dI0W5OPp98uFOPozo9fkEwvJEoe3xBtuQp4B2E0Sw-uZYMcb55sgPTmGorXLz2NMSmhc"/>
+<div>
+<h1 class="text-xl font-bold text-primary dark:text-blue-400">STATISTIK</h1>
+<h2 class="text-lg font-semibold text-secondary dark:text-teal-400 leading-tight">SEKTORAL</h2>
+</div>
+<div class="hidden md:block h-8 w-px bg-gray-300 dark:bg-gray-600 mx-4"></div>
+<span class="hidden md:block font-medium">Katalog Materi</span>
+</div>
+<button class="bg-primary text-white px-4 py-2 rounded-md font-medium hover:bg-blue-800 transition-colors">
+                Kembali ke Dashboard Utama
+            </button>
+</div>
+</header>
+<main class="flex-grow">
+<section class="hero-gradient py-16 px-6 text-center transition-colors duration-300">
+<div class="max-w-4xl mx-auto">
+<h1 class="text-3xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">PORTAL PEMBINAAN STATISTIK SEKTORAL</h1>
+<p class="text-lg md:text-xl text-gray-700 dark:text-gray-200 mb-8 max-w-2xl mx-auto">
+                    Pusat Pembelajaran Mandiri untuk Pegawai BPS dan K/L/Pemda dalam Memahami Statistik Sektoral menuju Satu Data Indonesia.
+                </p>
+<div class="relative max-w-2xl mx-auto">
+<span class="absolute inset-y-0 left-0 flex items-center pl-3">
+<span class="material-icons text-gray-400">search</span>
+</span>
+<input class="w-full py-3 pl-10 pr-4 border-none rounded-lg shadow-md focus:ring-2 focus:ring-primary dark:bg-card-dark dark:text-white dark:placeholder-gray-400 transition-colors duration-300" placeholder="Cari modul atau regulasi..." type="text"/>
+</div>
+</div>
+</section>
+<div class="max-w-7xl mx-auto px-6 py-12 space-y-16">
+<section>
+<h2 class="text-2xl font-bold mb-6 border-b pb-2 border-gray-200 dark:border-gray-700">Modul Pembinaan Statistik (Fundamental)</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<div class="bg-card-light dark:bg-card-dark rounded-xl shadow-md p-6 flex flex-col h-full border border-gray-100 dark:border-gray-800 hover:shadow-lg transition-shadow">
+<div class="bg-blue-100 dark:bg-blue-900/30 w-14 h-14 rounded-lg flex items-center justify-center mb-4 text-primary dark:text-blue-400">
+<span class="material-icons text-3xl">menu_book</span>
+</div>
+<h3 class="text-lg font-bold mb-2">Tata Laksana Penyelenggaraan Statistik</h3>
+<p class="text-sm text-text-muted-light dark:text-text-muted-dark flex-grow mb-6">Panduan menyeluruh mengenai tahapan produksi data, mulai dari perencanaan hingga penyebarluasan agar sesuai dengan standar nasional.</p>
+<button class="w-full bg-primary text-white py-2 rounded-md hover:bg-blue-800 transition-colors mt-auto font-medium text-sm">Unduh PDF (Modul 1)</button>
+</div>
+<div class="bg-card-light dark:bg-card-dark rounded-xl shadow-md p-6 flex flex-col h-full border border-gray-100 dark:border-gray-800 hover:shadow-lg transition-shadow">
+<div class="bg-blue-100 dark:bg-blue-900/30 w-14 h-14 rounded-lg flex items-center justify-center mb-4 text-primary dark:text-blue-400">
+<span class="material-icons text-3xl">assignment</span>
+</div>
+<h3 class="text-lg font-bold mb-2">Langkah Praktis dalam Survei &amp; Kompilasi Produk Admin</h3>
+<p class="text-sm text-text-muted-light dark:text-text-muted-dark flex-grow mb-6">Teknik lapangan dalam mengumpulkan data, baik melalui kuesioner (survei) maupun optimalisasi catatan administrasi lembaga.</p>
+<button class="w-full bg-primary text-white py-2 rounded-md hover:bg-blue-800 transition-colors mt-auto font-medium text-sm">Unduh PDF (Modul 2)</button>
+</div>
+<div class="bg-card-light dark:bg-card-dark rounded-xl shadow-md p-6 flex flex-col h-full border border-gray-100 dark:border-gray-800 hover:shadow-lg transition-shadow">
+<div class="bg-blue-100 dark:bg-blue-900/30 w-14 h-14 rounded-lg flex items-center justify-center mb-4 text-primary dark:text-blue-400">
+<span class="material-icons text-3xl">laptop_mac</span>
+</div>
+<h3 class="text-lg font-bold mb-2">Aplikasi Penyelenggaraan Kegiatan Statistik</h3>
+<p class="text-sm text-text-muted-light dark:text-text-muted-dark flex-grow mb-6">Panduan penggunaan <i>tools</i> digital resmi untuk membantu pelaporan dan manajemen data statistik sektoral.</p>
+<button class="w-full bg-primary text-white py-2 rounded-md hover:bg-blue-800 transition-colors mt-auto font-medium text-sm">Unduh PDF (Modul 3)</button>
+</div>
+<div class="bg-card-light dark:bg-card-dark rounded-xl shadow-md p-6 flex flex-col h-full border border-gray-100 dark:border-gray-800 hover:shadow-lg transition-shadow">
+<div class="bg-blue-100 dark:bg-blue-900/30 w-14 h-14 rounded-lg flex items-center justify-center mb-4 text-primary dark:text-blue-400">
+<span class="material-icons text-3xl">bar_chart</span>
+</div>
+<h3 class="text-lg font-bold mb-2">Dasar-Dasar Statistik</h3>
+<p class="text-sm text-text-muted-light dark:text-text-muted-dark flex-grow mb-6">Pengenalan konsep fundamental seperti rata-rata, standar deviasi, populasi, dan sampel untuk meminimalisir kesalahan interpretasi data.</p>
+<button class="w-full bg-primary text-white py-2 rounded-md hover:bg-blue-800 transition-colors mt-auto font-medium text-sm">Unduh PDF (Modul 4)</button>
+</div>
+</div>
+</section>
+<section>
+<h2 class="text-2xl font-bold mb-6 border-b pb-2 border-gray-200 dark:border-gray-700">Modul Pembinaan Statistik Sektoral - Seri EPSS</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+<div class="bg-card-light dark:bg-card-dark rounded-xl shadow-md p-6 flex flex-col h-full border border-gray-100 dark:border-gray-800 hover:shadow-lg transition-shadow">
+<div class="bg-teal-100 dark:bg-teal-900/30 w-12 h-12 rounded-lg flex items-center justify-center mb-4 text-secondary dark:text-teal-400">
+<span class="material-icons text-2xl">cloud_done</span>
+</div>
+<h3 class="text-base font-bold mb-2">Satu Data Indonesia</h3>
+<p class="text-xs text-text-muted-light dark:text-text-muted-dark flex-grow mb-6">Pemahaman mengenai kebijakan tata kelola data pemerintah agar data akurat, mutakhir, terpadu, dan mudah diakses.</p>
+<button class="w-full bg-secondary text-white py-2 rounded-md hover:bg-teal-700 transition-colors mt-auto font-medium text-xs">Unduh PDF (EPSS 1)</button>
+</div>
+<div class="bg-card-light dark:bg-card-dark rounded-xl shadow-md p-6 flex flex-col h-full border border-gray-100 dark:border-gray-800 hover:shadow-lg transition-shadow">
+<div class="bg-teal-100 dark:bg-teal-900/30 w-12 h-12 rounded-lg flex items-center justify-center mb-4 text-secondary dark:text-teal-400">
+<span class="material-icons text-2xl">verified_user</span>
+</div>
+<h3 class="text-base font-bold mb-2">Kualitas Data</h3>
+<p class="text-xs text-text-muted-light dark:text-text-muted-dark flex-grow mb-6">Mempelajari cara memastikan data memenuhi standar, memiliki metadata yang lengkap, dan mematuhi kaidah interoperabilitas.</p>
+<button class="w-full bg-secondary text-white py-2 rounded-md hover:bg-teal-700 transition-colors mt-auto font-medium text-xs">Unduh PDF (EPSS 2)</button>
+</div>
+<div class="bg-card-light dark:bg-card-dark rounded-xl shadow-md p-6 flex flex-col h-full border border-gray-100 dark:border-gray-800 hover:shadow-lg transition-shadow">
+<div class="bg-teal-100 dark:bg-teal-900/30 w-12 h-12 rounded-lg flex items-center justify-center mb-4 text-secondary dark:text-teal-400">
+<span class="material-icons text-2xl">account_tree</span>
+</div>
+<h3 class="text-base font-bold mb-2">Proses Bisnis Statistik</h3>
+<p class="text-xs text-text-muted-light dark:text-text-muted-dark flex-grow mb-6">Standarisasi alur kerja statistik menggunakan model GSBPM (Generic Statistical Business Process Model).</p>
+<button class="w-full bg-secondary text-white py-2 rounded-md hover:bg-teal-700 transition-colors mt-auto font-medium text-xs">Unduh PDF (EPSS 3)</button>
+</div>
+<div class="bg-card-light dark:bg-card-dark rounded-xl shadow-md p-6 flex flex-col h-full border border-gray-100 dark:border-gray-800 hover:shadow-lg transition-shadow">
+<div class="bg-teal-100 dark:bg-teal-900/30 w-12 h-12 rounded-lg flex items-center justify-center mb-4 text-secondary dark:text-teal-400">
+<span class="material-icons text-2xl">account_balance</span>
+</div>
+<h3 class="text-base font-bold mb-2">Kelembagaan</h3>
+<p class="text-xs text-text-muted-light dark:text-text-muted-dark flex-grow mb-6">Penjelasan mengenai peran Forum Data, Walidata, dan Produsen Data dalam struktur organisasi pemerintah.</p>
+<button class="w-full bg-secondary text-white py-2 rounded-md hover:bg-teal-700 transition-colors mt-auto font-medium text-xs">Unduh PDF (EPSS 4)</button>
+</div>
+<div class="bg-card-light dark:bg-card-dark rounded-xl shadow-md p-6 flex flex-col h-full border border-gray-100 dark:border-gray-800 hover:shadow-lg transition-shadow">
+<div class="bg-teal-100 dark:bg-teal-900/30 w-12 h-12 rounded-lg flex items-center justify-center mb-4 text-secondary dark:text-teal-400">
+<span class="material-icons text-2xl">hub</span>
+</div>
+<h3 class="text-base font-bold mb-2">Sistem Statistik Nasional</h3>
+<p class="text-xs text-text-muted-light dark:text-text-muted-dark flex-grow mb-6">Memahami keterkaitan antara statistik dasar (BPS), sektoral (K/L/Pemda), dan khusus (Masyarakat).</p>
+<button class="w-full bg-secondary text-white py-2 rounded-md hover:bg-teal-700 transition-colors mt-auto font-medium text-xs">Unduh PDF (EPSS 5)</button>
+</div>
+</div>
+</section>
+<section>
+<h2 class="text-2xl font-bold mb-6 border-b pb-2 border-gray-200 dark:border-gray-700">Paparan EPSS (Materi Strategis 2026)</h2>
+<div class="bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800 rounded-xl p-6 mb-6 flex flex-col md:flex-row items-center md:items-start gap-6">
+<div class="bg-white dark:bg-gray-800 p-4 rounded-xl shadow-sm shrink-0">
+<img alt="Overview Icon" class="w-24 h-24 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkc-X_x1LOBN5uSIqFNwZ6Z-bac6pDQ173PGj8iXqvaqqOm4Fl0QwhvkF_vqAtvVQPX6r_PiJCPflTBY8OJb5hIGfdxN1lWNdyo5YtXBIhykVEtl3ZkKnCMqYtiww3Qcmy5U8xASw_KGXyJZYd-9uia9ip8xt34QIywxaT0TqWyPJsyG1zWBqyqFvgAPU2w42Mw5Pe8fMvhNjchSbce1WnGpV79qs63AjJHI5H26ocTgl8iSvuJVZc8Sjbn9qKJ0U1QYZickXWrGQ"/>
+</div>
+<div class="flex-grow text-center md:text-left">
+<h3 class="text-xl font-bold mb-2">Overview EPSS 2026</h3>
+<p class="text-sm text-gray-700 dark:text-gray-300 mb-4">Ringkasan kebijakan, jadwal pelaksanaan, dan target capaian Indeks Pembangunan Statistik (IPS) tahun 2026.</p>
+<button class="bg-primary text-white px-6 py-2 rounded-md hover:bg-blue-800 transition-colors font-medium text-sm">Unduh PPT/PDF</button>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+<div class="bg-card-light dark:bg-card-dark border border-gray-200 dark:border-gray-700 rounded-lg p-4 flex flex-col items-center text-center">
+<div class="bg-gray-100 dark:bg-gray-800 p-2 rounded-md mb-3">
+<span class="material-icons text-primary dark:text-blue-400">event_note</span>
+</div>
+<h4 class="font-bold mb-3">Domain 1</h4>
+<button class="w-full bg-primary text-white py-1.5 rounded text-xs font-medium hover:bg-blue-800 transition-colors mt-auto">Unduh PPT/PDF</button>
+</div>
+<div class="bg-card-light dark:bg-card-dark border border-gray-200 dark:border-gray-700 rounded-lg p-4 flex flex-col items-center text-center">
+<div class="bg-gray-100 dark:bg-gray-800 p-2 rounded-md mb-3">
+<span class="material-icons text-primary dark:text-blue-400">event_note</span>
+</div>
+<h4 class="font-bold mb-3">Domain 2</h4>
+<button class="w-full bg-primary text-white py-1.5 rounded text-xs font-medium hover:bg-blue-800 transition-colors mt-auto">Unduh PPT/PDF</button>
+</div>
+<div class="bg-card-light dark:bg-card-dark border border-gray-200 dark:border-gray-700 rounded-lg p-4 flex flex-col items-center text-center">
+<div class="bg-gray-100 dark:bg-gray-800 p-2 rounded-md mb-3">
+<span class="material-icons text-primary dark:text-blue-400">event_note</span>
+</div>
+<h4 class="font-bold mb-3">Domain 3</h4>
+<button class="w-full bg-primary text-white py-1.5 rounded text-xs font-medium hover:bg-blue-800 transition-colors mt-auto">Unduh PPT/PDF</button>
+</div>
+<div class="bg-card-light dark:bg-card-dark border border-gray-200 dark:border-gray-700 rounded-lg p-4 flex flex-col items-center text-center">
+<div class="bg-gray-100 dark:bg-gray-800 p-2 rounded-md mb-3">
+<span class="material-icons text-primary dark:text-blue-400">event_note</span>
+</div>
+<h4 class="font-bold mb-3">Domain 4</h4>
+<button class="w-full bg-primary text-white py-1.5 rounded text-xs font-medium hover:bg-blue-800 transition-colors mt-auto">Unduh PPT/PDF</button>
+</div>
+<div class="bg-card-light dark:bg-card-dark border border-gray-200 dark:border-gray-700 rounded-lg p-4 flex flex-col items-center text-center">
+<div class="bg-gray-100 dark:bg-gray-800 p-2 rounded-md mb-3">
+<span class="material-icons text-primary dark:text-blue-400">event_note</span>
+</div>
+<h4 class="font-bold mb-3">Domain 5</h4>
+<button class="w-full bg-primary text-white py-1.5 rounded text-xs font-medium hover:bg-blue-800 transition-colors mt-auto">Unduh PPT/PDF</button>
+</div>
+</div>
+</section>
+<section>
+<h2 class="text-2xl font-bold mb-6 border-b pb-2 border-gray-200 dark:border-gray-700">Daftar Regulasi &amp; Peraturan</h2>
+<div class="overflow-x-auto bg-card-light dark:bg-card-dark rounded-xl shadow-sm border border-gray-200 dark:border-gray-700">
+<table class="w-full text-left text-sm whitespace-nowrap">
+<thead class="bg-blue-50 dark:bg-blue-900/30 text-gray-700 dark:text-gray-200 uppercase font-semibold">
+<tr>
+<th class="px-6 py-4" scope="col">Nama Dokumen</th>
+<th class="px-6 py-4" scope="col">Kategori</th>
+<th class="px-6 py-4 text-right" scope="col">Aksi</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+<td class="px-6 py-4 font-medium text-gray-900 dark:text-white">UU No. 16/1997 Statistik</td>
+<td class="px-6 py-4">Undang-Undang</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end space-x-2">
+<span class="text-blue-600 dark:text-blue-400 font-medium text-xs">[PDF]</span>
+<button class="bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-700 px-3 py-1 rounded hover:bg-blue-100 dark:hover:bg-blue-800 transition-colors text-xs">Lihat PDF</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+<td class="px-6 py-4 font-medium text-gray-900 dark:text-white">Perpres No. 39/2019 SDI</td>
+<td class="px-6 py-4">Peraturan Presiden</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end space-x-2">
+<span class="text-blue-600 dark:text-blue-400 font-medium text-xs">[PDF]</span>
+<button class="bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-700 px-3 py-1 rounded hover:bg-blue-100 dark:hover:bg-blue-800 transition-colors text-xs">Lihat PDF</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+<td class="px-6 py-4 font-medium text-gray-900 dark:text-white">Perban BPS No. 3/2022 EPSS</td>
+<td class="px-6 py-4">Peraturan BPS</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end space-x-2">
+<span class="text-blue-600 dark:text-blue-400 font-medium text-xs">[PDF]</span>
+<button class="bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-700 px-3 py-1 rounded hover:bg-blue-100 dark:hover:bg-blue-800 transition-colors text-xs">Unduh</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+<td class="px-6 py-4 font-medium text-gray-900 dark:text-white">Perban BPS No. 3/2022 SDI</td>
+<td class="px-6 py-4">Peraturan BPS</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end space-x-2">
+<span class="text-blue-600 dark:text-blue-400 font-medium text-xs">[PDF]</span>
+<button class="bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-700 px-3 py-1 rounded hover:bg-blue-100 dark:hover:bg-blue-800 transition-colors text-xs">Unduh</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+<td class="px-6 py-4 font-medium text-gray-900 dark:text-white">Perban BPS No. 3/2022 EPSS</td>
+<td class="px-6 py-4">Peraturan BPS</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end space-x-2">
+<span class="text-blue-600 dark:text-blue-400 font-medium text-xs">[PDF]</span>
+<button class="bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-700 px-3 py-1 rounded hover:bg-blue-100 dark:hover:bg-blue-800 transition-colors text-xs">Unduh</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+</main>
+<footer class="bg-white dark:bg-card-dark py-6 mt-12 border-t border-gray-200 dark:border-gray-800 transition-colors duration-300">
+<div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between text-sm text-gray-500 dark:text-gray-400">
+<div class="flex items-center space-x-3 mb-4 md:mb-0">
+<img alt="Statistik Sektoral Footer Logo" class="h-6 w-6 rounded" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4SyB2aUS_Zpga_LtD9SFa7cNATkiOPXbcYSB2QSYaC9YxfYEIJX13daOx2hqlJs9-zzI0MWtB3rEr8YZVRr_PDkzQ_OCWvsoF1_mzWNoN8MojUeQ1qsN3D18EkqCArPQJVq-F0VRU7x2spBdorTVKMrHwwNoyvDSrC2zYs8xGMlQ7RajLyW_5PKuDsb7eqMcUmjSYIoZ_krViGLaJEyzezEHhD1vtIpVM-ntF7DG5mKluTnfzSJu4nJCMWLHoaTKPYcpfkJA3rFE"/>
+<div>
+<p class="font-semibold text-gray-700 dark:text-gray-300">Government Berastari</p>
+<p class="text-xs">Portal Pembinaan Statistik Sektoral LMS</p>
+</div>
+</div>
+<div>
+                © 2024 Portal Pembinaan Statistik Sektoral. All rights reserved.
+            </div>
+</div>
+</footer>
+
+</body></html>

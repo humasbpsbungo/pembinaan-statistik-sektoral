@@ -90,7 +90,7 @@ const domain1: Domain = {
             "Data yang dihasilkan oleh produsen data harus memenuhi standar data. Jika datanya lintas instansi, maka SDS ditetapkan oleh BPS melalui regulasi SDSN.",
           bobotRelatif: 7.0,
           isGeneral: false,
-          pdfPage: 1,
+          pdfPage: 5,
           levels: [
             makeLevel(1, "Seluruh/sebagian produsen belum menerapkan SDS", [
               "Tidak terpenuhinya Kriteria Bukti Dukung",
@@ -135,7 +135,7 @@ const domain1: Domain = {
             "Data yang dihasilkan oleh produsen data harus dilengkapi dengan metadata. Metadata statistik dilaporkan ke BPS melalui aplikasi indah.bps.go.id.",
           bobotRelatif: 7.0,
           isGeneral: false,
-          pdfPage: 1,
+          pdfPage: 15,
           levels: [
             makeLevel(
               1,
@@ -186,7 +186,7 @@ const domain1: Domain = {
             "Kemampuan data untuk dibagipakaikan antar sistem elektronik. Data harus konsisten dalam sintaksis, struktur, dan semantik serta disimpan dalam format terbuka.",
           bobotRelatif: 7.0,
           isGeneral: false,
-          pdfPage: 1,
+          pdfPage: 25,
           levels: [
             makeLevel(
               1,
@@ -231,7 +231,7 @@ const domain1: Domain = {
             "Kode Referensi dan/atau Data Induk dibahas dan disepakati dalam Forum SDI, mencakup NIK, kode kewilayahan, kode Fasyankes, serta standar internasional (KBLI, KBKI, KBJI).",
           bobotRelatif: 7.0,
           isGeneral: false,
-          pdfPage: 1,
+          pdfPage: 30,
           levels: [
             makeLevel(
               1,
@@ -292,7 +292,7 @@ const domain2: Domain = {
             "Relevansi mencerminkan sejauh mana data/informasi statistik dapat memenuhi kebutuhan dan bermanfaat bagi para pengguna.",
           bobotRelatif: 3.02,
           isGeneral: false,
-          pdfPage: 1,
+          pdfPage: 8,
           levels: [
             makeLevel(
               1,
@@ -337,7 +337,7 @@ const domain2: Domain = {
             "Proses investigasi dan identifikasi output data yang dibutuhkan pengguna serta sumber daya yang dibutuhkan untuk menghasilkannya.",
           bobotRelatif: 2.02,
           isGeneral: false,
-          pdfPage: 1,
+          pdfPage: 13,
           levels: [
             makeLevel(
               1,
@@ -384,7 +384,7 @@ const domain2: Domain = {
             "Akurasi merujuk pada kemampuan data dalam menjelaskan kondisi yang sebenarnya, mencakup pemeriksaan sumber data, sampling error, rule validasi, dan supervisi.",
           bobotRelatif: 3.84,
           isGeneral: false,
-          pdfPage: 1,
+          pdfPage: 19,
           levels: [
             makeLevel(
               1,
@@ -427,7 +427,7 @@ const domain2: Domain = {
             "Seberapa cepat data/informasi tersedia bagi pengguna, dilihat dari jeda waktu antara periode data sampai data dirilis.",
           bobotRelatif: 2.52,
           isGeneral: false,
-          pdfPage: 1,
+          pdfPage: 24,
           levels: [
             makeLevel(
               1,
@@ -463,7 +463,7 @@ const domain2: Domain = {
             "Apakah diseminasi data sudah sesuai jadwal rilis yang dijanjikan. Harus ada Advanced Release Calendar (ARC).",
           bobotRelatif: 2.52,
           isGeneral: false,
-          pdfPage: 1,
+          pdfPage: 29,
           levels: [
             makeLevel(
               1,
@@ -506,7 +506,7 @@ const domain2: Domain = {
             "Tersedianya data/informasi beserta metadatanya bagi pengguna agar dapat dimanfaatkan untuk berbagai kebutuhan.",
           bobotRelatif: 1.71,
           isGeneral: false,
-          pdfPage: 1,
+          pdfPage: 36,
           levels: [
             makeLevel(1, "Belum melakukan penjaminan ketersediaan data", [
               "Tidak ada bukti dukung",
@@ -577,7 +577,7 @@ const domain2: Domain = {
             "Format umum data yang disediakan untuk kemudahan pengguna (xlsx, csv, html, json, dll).",
           bobotRelatif: 1.66,
           isGeneral: false,
-          pdfPage: 1,
+          pdfPage: 48,
           levels: [
             makeLevel(1, "Belum melakukan penjaminan penyediaan format data", [
               "Tidak ada bukti dukung",
@@ -618,7 +618,7 @@ const domain2: Domain = {
             "Kemampuan data untuk dibandingkan secara konsisten antarwaktu dan/atau antarwilayah.",
           bobotRelatif: 2.52,
           isGeneral: false,
-          pdfPage: 1,
+          pdfPage: 54,
           levels: [
             makeLevel(1, "Belum melakukan penjaminan keterbandingan data", [
               "Tidak ada bukti dukung",
@@ -650,7 +650,7 @@ const domain2: Domain = {
             "Kemampuan data untuk konsisten ketika diperbandingkan dengan berbagai sumber data.",
           bobotRelatif: 2.52,
           isGeneral: false,
-          pdfPage: 1,
+          pdfPage: 59,
           levels: [
             makeLevel(1, "Belum melakukan penjaminan konsistensi statistik", [
               "Tidak ada bukti dukung",
@@ -691,6 +691,7 @@ function makeD3Indikator(
   nama: string,
   deskripsi: string,
   bobotRelatif: number,
+  pdfPage: number = 1,
 ): Indikator {
   return {
     kode,
@@ -698,7 +699,7 @@ function makeD3Indikator(
     deskripsi,
     bobotRelatif,
     isGeneral: false,
-          pdfPage: 1,
+    pdfPage,
     levels: [
       makeLevel(1, `${nama} belum dilakukan oleh seluruh Produsen Data`, [
         "Tidak ada bukti dukung; atau bukti tidak relevan",
@@ -753,20 +754,23 @@ const domain3: Domain = {
         makeD3Indikator(
           "30101",
           "Pendefinisian Kebutuhan Statistik",
-          "Proses menentukan kebutuhan data berdasarkan tujuan yang ingin dicapai, mengakomodasi kebutuhan stakeholders dan Forum Data.",
+          "Proses menentukan kebutuhan data berdasarkan tujuan yang ingin dicapai, mengakomodasi kebutuhan stakeholders and Forum Data.",
           2.71,
+          9,
         ),
         makeD3Indikator(
           "30102",
           "Desain Statistik",
           "Proses membuat rancangan kegiatan statistik mencakup output, konsep, metode pengumpulan, sampling, pengolahan, dan alur kerja.",
           2.71,
+          11,
         ),
         makeD3Indikator(
           "30103",
           "Penyiapan Instrumen",
           "Tahap pembangunan dan pengujian instrumen yang sudah dirancang hingga siap digunakan.",
           2.71,
+          13,
         ),
       ],
     },
@@ -779,6 +783,7 @@ const domain3: Domain = {
           "Proses Pengumpulan Data/Akuisisi Data",
           "Tahapan mencari data/informasi di lapangan atau akuisisi dari sumber lain.",
           2.71,
+          15,
         ),
       ],
     },
@@ -791,12 +796,14 @@ const domain3: Domain = {
           "Pengolahan Data",
           "Tahapan pengolahan data yang sudah dikumpulkan: integrasi, klasifikasi, coding, validasi, imputasi, agregasi.",
           2.71,
+          17,
         ),
         makeD3Indikator(
           "30302",
           "Analisis Data",
           "Tahapan analisis data: draf output, validasi output, interpretasi, disclosure control, finalisasi.",
           2.71,
+          19,
         ),
       ],
     },
@@ -809,6 +816,7 @@ const domain3: Domain = {
           "Diseminasi Data",
           "Kegiatan penyebaran informasi statistik melalui berbagai media/saluran kepada pengguna.",
           2.71,
+          21,
         ),
       ],
     },
@@ -840,7 +848,7 @@ const domain4: Domain = {
             "Menetapkan hak pengguna data dalam memanfaatkan data statistik, memastikan interpretasi yang benar.",
           bobotRelatif: 1.49,
           isGeneral: true,
-          pdfPage: 1,
+          pdfPage: 6,
           levels: [
             makeLevel(
               1,
@@ -880,7 +888,7 @@ const domain4: Domain = {
             "Menjamin data/informasi yang dihasilkan objektif sesuai keilmuan statistik dengan rujukan standar nasional dan internasional.",
           bobotRelatif: 1.49,
           isGeneral: true,
-          pdfPage: 1,
+          pdfPage: 10,
           levels: [
             makeLevel(
               1,
@@ -914,7 +922,7 @@ const domain4: Domain = {
             "Memberikan data dan informasi yang berkualitas kepada pengguna melalui komitmen penjaminan kualitas.",
           bobotRelatif: 1.49,
           isGeneral: true,
-          pdfPage: 1,
+          pdfPage: 13,
           levels: [
             makeLevel(
               1,
@@ -950,7 +958,7 @@ const domain4: Domain = {
             "Menjamin kerahasiaan data individu agar tidak disalahgunakan oleh pihak yang tidak bertanggung jawab.",
           bobotRelatif: 1.49,
           isGeneral: true,
-          pdfPage: 1,
+          pdfPage: 16,
           levels: [
             makeLevel(
               1,
@@ -990,7 +998,7 @@ const domain4: Domain = {
             "Pemenuhan SDM bidang statistik dari segi kualitas maupun kuantitas melalui jalur jabatan, pendidikan, atau penugasan.",
           bobotRelatif: 2.55,
           isGeneral: true,
-          pdfPage: 1,
+          pdfPage: 20,
           levels: [
             makeLevel(
               1,
@@ -1033,7 +1041,7 @@ const domain4: Domain = {
             "Pemenuhan SDM bidang manajemen data agar diperoleh data yang akurat, mutakhir, dan terintegrasi.",
           bobotRelatif: 2.55,
           isGeneral: true,
-          pdfPage: 1,
+          pdfPage: 23,
           levels: [
             makeLevel(
               1,
@@ -1082,7 +1090,7 @@ const domain4: Domain = {
             "Kolaborasi di setiap tahapan penyelenggaraan statistik untuk menghindari tumpang tindih/duplikasi pekerjaan.",
           bobotRelatif: 1.49,
           isGeneral: true,
-          pdfPage: 1,
+          pdfPage: 26,
           levels: [
             makeLevel(1, "Kolaborasi antar unit kerja belum dilaksanakan", [
               "Tidak ada bukti dukung",
@@ -1121,7 +1129,7 @@ const domain4: Domain = {
             "Koordinasi pembina data dan walidata melalui Forum SDI sesuai Rencana Aksi SDI.",
           bobotRelatif: 1.49,
           isGeneral: true,
-          pdfPage: 1,
+          pdfPage: 29,
           levels: [
             makeLevel(1, "Walidata belum terlibat dalam Forum SDI", [
               "Tidak ada bukti dukung",
@@ -1159,7 +1167,7 @@ const domain4: Domain = {
             "Kolaborasi formal dengan BPS untuk meningkatkan kualitas tata kelola manajemen dan proses produksi statistik sektoral.",
           bobotRelatif: 1.49,
           isGeneral: true,
-          pdfPage: 1,
+          pdfPage: 34,
           levels: [
             makeLevel(1, "Belum ada kolaborasi dengan Pembina Data", [
               "Tidak ada bukti dukung",
@@ -1196,7 +1204,7 @@ const domain4: Domain = {
             "Peran strategis Walidata dalam ekosistem SDI: mengumpulkan, memeriksa, mengelola, dan menyebarluaskan data.",
           bobotRelatif: 1.49,
           isGeneral: true,
-          pdfPage: 1,
+          pdfPage: 39,
           levels: [
             makeLevel(1, "Walidata belum ditetapkan secara resmi", [
               "Tidak ada SK/dokumen penetapan walidata",
@@ -1266,7 +1274,7 @@ const domain5: Domain = {
             "Pemanfaatan statistik dasar (BPS) untuk perencanaan, monev, dan/atau penyusunan kebijakan.",
           bobotRelatif: 1.39,
           isGeneral: true,
-          pdfPage: 1,
+          pdfPage: 5,
           levels: [
             makeLevel(1, "Penggunaan Data Statistik Dasar belum dilakukan", [
               "Tidak ada bukti dukung",
@@ -1308,7 +1316,7 @@ const domain5: Domain = {
             "Pemanfaatan statistik sektoral (internal/eksternal K/L/D/I) untuk perencanaan, monev, dan/atau penyusunan kebijakan.",
           bobotRelatif: 1.35,
           isGeneral: true,
-          pdfPage: 1,
+          pdfPage: 7,
           levels: [
             makeLevel(1, "Penggunaan Data Statistik Sektoral belum dilakukan", [
               "Tidak ada bukti dukung",
@@ -1345,7 +1353,7 @@ const domain5: Domain = {
             "Kegiatan sosialisasi dan peningkatan literasi mengenai statistik yang dihasilkan, memberikan interpretasi yang benar kepada publik.",
           bobotRelatif: 1.35,
           isGeneral: true,
-          pdfPage: 1,
+          pdfPage: 9,
           levels: [
             makeLevel(1, "Sosialisasi Data Statistik belum dilakukan", [
               "Tidak ada bukti dukung",
@@ -1386,7 +1394,7 @@ const domain5: Domain = {
             "BPS memberikan rekomendasi dalam perencanaan pengumpulan data. Kegiatan statistik harus dilaporkan ke BPS melalui Romantik Online.",
           bobotRelatif: 3.96,
           isGeneral: false,
-          pdfPage: 1,
+          pdfPage: 11,
           levels: [
             makeLevel(
               1,
@@ -1430,7 +1438,7 @@ const domain5: Domain = {
             "Penyusunan dan pelaksanaan Rencana Aksi SDI sebagai turunan dari rekomendasi Forum SDI.",
           bobotRelatif: 1.31,
           isGeneral: true,
-          pdfPage: 1,
+          pdfPage: 13,
           levels: [
             makeLevel(1, "Perencanaan Pembangunan Statistik belum disusun", [
               "Tidak ada bukti dukung",
@@ -1461,7 +1469,7 @@ const domain5: Domain = {
             "Penyebarluasan dilakukan satu pintu oleh walidata melalui portal SDI.",
           bobotRelatif: 1.31,
           isGeneral: true,
-          pdfPage: 1,
+          pdfPage: 15,
           levels: [
             makeLevel(1, "Penyebarluasan Data belum dilakukan", [
               "Tidak ada bukti dukung",
@@ -1498,7 +1506,7 @@ const domain5: Domain = {
             "Pemanfaatan big data (3Vs/5Vs) dalam kegiatan statistik untuk real-time monitoring dan statistik pendukung.",
           bobotRelatif: 1.35,
           isGeneral: true,
-          pdfPage: 1,
+          pdfPage: 17,
           levels: [
             makeLevel(1, "Pemanfaatan Big Data belum dilakukan", [
               "Tidak ada bukti dukung",

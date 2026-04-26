@@ -1,0 +1,266 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Portal Statistik Sektoral">
+  <!-- Hero Section -->
+  <section class="hero portal-hero">
+    <div class="hero-bg"></div>
+    <div class="container hero-content">
+      <div class="hero-badge animate-fadeInUp">
+        <span>📚</span> Portal Pembinaan Statistik Sektoral
+      </div>
+      <h1 class="hero-title animate-fadeInUp stagger-1">
+        Pusat Materi <br/>
+        <span class="accent-text">Statistik Sektoral</span>
+      </h1>
+      <p class="hero-desc animate-fadeInUp stagger-2">
+        Akses berbagai modul pembelajaran mandiri, regulasi, dan paparan strategis untuk meningkatkan literasi statistik sektoral di instansi Anda.
+      </p>
+      <div class="relative max-w-2xl mx-auto animate-fadeInUp stagger-3 mt-12">
+        <span class="absolute inset-y-0 left-0 flex items-center pl-4">
+          <span class="material-icons text-[var(--text-muted)]">search</span>
+        </span>
+        <input 
+          class="w-full py-4 pl-12 pr-4 border-none rounded-xl shadow-lg focus:ring-2 focus:ring-[var(--accent)] bg-[var(--bg-glass)] backdrop-blur-md text-white placeholder-[var(--text-muted)] transition-all duration-300 border border-[var(--border-color)]" 
+          placeholder="Cari modul atau regulasi..." 
+          type="text"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Fundamental Modules -->
+  <section class="section animate-fadeInUp">
+    <div class="container">
+      <div class="section-header">
+        <h2>Modul <span class="accent-text">Fundamental</span></h2>
+        <p class="section-desc">Panduan dasar penyelenggaraan kegiatan statistik bagi seluruh pegawai dan mitra.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {[
+          { title: "Tata Laksana Penyelenggaraan Statistik", icon: "menu_book", desc: "Panduan menyeluruh mengenai tahapan produksi data, mulai dari perencanaan hingga penyebarluasan." },
+          { title: "Langkah Praktis Survei & Kompilasi Admin", icon: "assignment", desc: "Teknik lapangan pengumpulan data melalui kuesioner maupun optimalisasi catatan administrasi lembaga." },
+          { title: "Aplikasi Penyelenggaraan Statistik", icon: "laptop_mac", desc: "Panduan penggunaan tools digital resmi untuk membantu pelaporan dan manajemen data statistik." },
+          { title: "Dasar-Dasar Statistik", icon: "bar_chart", desc: "Pengenalan konsep fundamental seperti rata-rata, standar deviasi, dan populasi untuk analisis data." }
+        ].map((modul, i) => (
+          <div class={`glass-card flex flex-col h-full stagger-${i+1}`} style="padding: var(--space-xl)">
+            <div class="bg-[var(--accent-soft)] w-14 h-14 rounded-xl flex items-center justify-center mb-6 text-[var(--accent)]">
+              <span class="material-icons text-3xl">{modul.icon}</span>
+            </div>
+            <h3 class="font-bold mb-4 text-[1.25rem] leading-tight">{modul.title}</h3>
+            <p class="text-sm text-[var(--text-secondary)] flex-grow mb-8 leading-relaxed">{modul.desc}</p>
+            <button class="btn btn-primary btn-sm w-full">Unduh PDF</button>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- EPSS Series -->
+  <section class="section animate-fadeInUp stagger-2 bg-[var(--bg-elevated)] bg-opacity-30">
+    <div class="container">
+      <div class="section-header">
+        <h2>Seri <span class="accent-text">EPSS</span></h2>
+        <p class="section-desc">Materi khusus pendukung Evaluasi Penyelenggaraan Statistik Sektoral.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+        {[
+          { title: "Satu Data Indonesia", icon: "cloud_done", desc: "Kebijakan tata kelola data pemerintah agar data akurat, mutakhir, dan terpadu." },
+          { title: "Kualitas Data", icon: "verified_user", desc: "Memastikan data memenuhi standar, metadata lengkap, dan interoperabilitas." },
+          { title: "Proses Bisnis Statistik", icon: "account_tree", desc: "Standarisasi alur kerja statistik menggunakan model GSBPM." },
+          { title: "Kelembagaan", icon: "account_balance", desc: "Peran Forum Data, Walidata, dan Produsen Data dalam struktur pemerintah." },
+          { title: "Sistem Statistik Nasional", icon: "hub", desc: "Memahami keterkaitan antara statistik dasar, sektoral, dan khusus." }
+        ].map((modul, i) => (
+          <div class="glass-card flex flex-col h-full text-center" style="padding: var(--space-xl)">
+            <div class="bg-[var(--accent-soft)] w-12 h-12 rounded-lg flex items-center justify-center mb-5 text-[var(--accent)] mx-auto">
+              <span class="material-icons text-2xl">{modul.icon}</span>
+            </div>
+            <h3 class="text-[1rem] font-bold mb-3">{modul.title}</h3>
+            <p class="text-xs text-[var(--text-secondary)] flex-grow mb-6 leading-relaxed">{modul.desc}</p>
+            <button class="btn btn-secondary btn-sm w-full text-xs">Unduh PDF</button>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Strategic Material 2026 -->
+  <section class="section animate-fadeInUp stagger-3">
+    <div class="container">
+      <div class="section-header">
+        <h2>Paparan <span class="accent-text">Strategis 2026</span></h2>
+        <p class="section-desc">Materi presentasi dan ringkasan eksekutif kebijakan EPSS tahun 2026.</p>
+      </div>
+      <div class="glass-card mb-12 flex flex-col md:flex-row items-center md:items-start gap-10 shadow-2xl border-[var(--border-accent)] border-opacity-30" style="padding: var(--space-xl)">
+        <div class="bg-[var(--bg-elevated)] p-8 rounded-3xl shadow-inner shrink-0 animate-float border border-[var(--border-color)]">
+          <img alt="Overview Icon" class="w-32 h-32 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkc-X_x1LOBN5uSIqFNwZ6Z-bac6pDQ173PGj8iXqvaqqOm4Fl0QwhvkF_vqAtvVQPX6r_PiJCPflTBY8OJb5hIGfdxN1lWNdyo5YtXBIhykVEtl3ZkKnCMqYtiww3Qcmy5U8xASw_KGXyJZYd-9uia9ip8xt34QIywxaT0TqWyPJsyG1zWBqyqFvgAPU2w42Mw5Pe8fMvhNjchSbce1WnGpV79qs63AjJHI5H26ocTgl8iSvuJVZc8Sjbn9qKJ0U1QYZickXWrGQ"/>
+        </div>
+        <div class="flex-grow text-center md:text-left">
+          <h3 class="text-3xl font-bold mb-4">Overview EPSS 2026</h3>
+          <p class="text-lg text-[var(--text-secondary)] mb-8 leading-relaxed max-w-3xl">Ringkasan kebijakan, jadwal pelaksanaan, dan target capaian Indeks Pembangunan Statistik (IPS) tahun 2026 yang akan menjadi acuan bagi seluruh instansi.</p>
+          <button class="btn btn-primary btn-lg">
+            <span class="material-icons">download</span>
+            Unduh Materi Utama
+          </button>
+        </div>
+      </div>
+      
+      <div class="grid grid-cols-2 md:grid-cols-5 gap-6">
+        {[1, 2, 3, 4, 5].map(domain => (
+          <div class="glass-card flex flex-col items-center text-center hover:scale-105 transition-transform duration-300" style="padding: var(--space-lg)">
+            <div class="bg-[var(--bg-elevated)] p-4 rounded-xl mb-4 shadow-sm">
+              <span class="material-icons text-[var(--accent)] text-2xl">event_note</span>
+            </div>
+            <h4 class="text-base font-bold mb-4">Domain {domain}</h4>
+            <button class="btn btn-secondary btn-sm w-full text-xs">Unduh Materi</button>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Regulations Table -->
+  <section class="section animate-fadeInUp stagger-4 bg-[var(--bg-elevated)] bg-opacity-20">
+    <div class="container">
+      <div class="section-header">
+        <h2>Daftar <span class="accent-text">Regulasi</span></h2>
+        <p class="section-desc">Kumpulan landasan hukum dan aturan teknis penyelenggaraan statistik.</p>
+      </div>
+      <div class="table-wrapper shadow-2xl border border-[var(--border-color)] rounded-2xl overflow-hidden">
+        <table class="w-full text-left text-sm whitespace-nowrap">
+          <thead>
+            <tr class="bg-[var(--bg-card)]">
+              <th class="px-8 py-5 text-base font-bold">Nama Dokumen</th>
+              <th class="px-8 py-5 text-base font-bold">Kategori</th>
+              <th class="px-8 py-5 text-right text-base font-bold">Aksi</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-[var(--border-color)] bg-[var(--bg-glass)]">
+            {[
+              { name: "UU No. 16/1997 Statistik", cat: "Undang-Undang" },
+              { name: "Perpres No. 39/2019 SDI", cat: "Peraturan Presiden" },
+              { name: "Perban BPS No. 3/2022 EPSS", cat: "Peraturan BPS" },
+              { name: "Perban BPS No. 3/2022 SDI", cat: "Peraturan BPS" }
+            ].map(doc => (
+              <tr class="hover:bg-[var(--bg-card-hover)] transition-colors">
+                <td class="px-8 py-6 font-medium text-white">{doc.name}</td>
+                <td class="px-8 py-6 text-[var(--text-secondary)]">{doc.cat}</td>
+                <td class="px-8 py-6 text-right">
+                  <button class="btn btn-ghost btn-sm text-[var(--accent)] hover:bg-[var(--accent-soft)]">
+                    <span class="material-icons text-sm">visibility</span>
+                    Lihat
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Back to Dashboard -->
+  <section class="section">
+    <div class="container flex justify-center">
+      <div class="cta-card glass-card animate-fadeInUp w-full max-w-4xl" style="padding: var(--space-2xl) var(--space-xl)">
+        <h2 class="text-3xl mb-4 text-center">Butuh Simulasi IPS?</h2>
+        <p class="text-lg mb-10 max-w-xl mx-auto text-center">Gunakan simulator untuk mengukur tingkat kematangan statistik instansi Anda secara akurat dan mandiri.</p>
+        <div class="flex gap-6 justify-center flex-wrap">
+          <a href="/simulasi" class="btn btn-primary btn-lg px-10">🧮 Mulai Simulasi</a>
+          <a href="/" class="btn btn-secondary btn-lg px-10">🏠 Kembali ke Beranda</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+
+<style>
+  /* Hero */
+  .portal-hero {
+    position: relative;
+    padding: calc(var(--header-height) + var(--space-3xl)) 0 var(--space-3xl);
+    overflow: hidden;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: var(--gradient-hero);
+  }
+
+  .hero-bg::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -30%;
+    width: 80%;
+    height: 80%;
+    background: radial-gradient(circle, rgba(212, 168, 67, 0.1) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: 10px 24px;
+    background: var(--accent-soft);
+    border: 1px solid var(--border-accent);
+    border-radius: var(--radius-full);
+    font-size: 0.9rem;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: var(--space-xl);
+  }
+
+  .hero-title {
+    margin-bottom: var(--space-lg);
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    line-height: 1.1;
+    font-weight: 800;
+  }
+
+  .hero-desc {
+    color: var(--text-secondary);
+    font-size: 1.25rem;
+    line-height: 1.6;
+    margin-bottom: var(--space-xl);
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .section-header h2 {
+    font-size: 2.25rem;
+    margin-bottom: var(--space-sm);
+  }
+
+  .section-desc {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-xl);
+  }
+
+  @media (max-width: 768px) {
+    .portal-hero {
+      min-height: auto;
+      padding: calc(var(--header-height) + var(--space-2xl)) 0 var(--space-2xl);
+    }
+    .hero-title { font-size: clamp(2rem, 8vw, 3rem); }
+    .hero-desc { font-size: 1.05rem; }
+  }
+</style>
